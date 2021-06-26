@@ -38,10 +38,7 @@
                                     <td>{{ $k->jadwal }}</td>
                                     <td>{{ $k->matkul }}</td>
                                     <td>
-                                        <form action="{{ route('show-jadwal', [$k->id]) }}" method="POST">
-                                            @csrf
-                                            <button class="btn-warning btn">Ubah</button>
-                                        </form>
+
                                         <form action="{{ route('hapus-jadwal', [$k->id]) }}" method="POST">
                                             @csrf
                                             @method('delete')

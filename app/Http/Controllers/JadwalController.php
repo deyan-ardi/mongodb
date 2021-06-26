@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Dosen;
 use App\Jadwal;
-use App\Kelas;
 use Illuminate\Http\Request;
 
 class JadwalController extends Controller
@@ -27,9 +25,8 @@ class JadwalController extends Controller
      */
     public function create()
     {
-        $dosen = Dosen::all();
-        $kelas = Kelas::all();
-        return view('page.c_jadwal',['dosen' => $dosen, 'kelas' => $kelas]);
+
+        return view('page.c_jadwal');
     }
 
     /**
@@ -47,38 +44,6 @@ class JadwalController extends Controller
             'matkul' => ucWords($request->matkul_kelas),
         ]);
         return redirect(route('jadwal'))->with('success', 'Data Jadwal Berhasil Ditambahkan');
-    }
-
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Jadwal  $jadwal
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Jadwal $jadwal)
-    {
-        $dosen = Dosen::all();
-        $kelas = Kelas::all();
-        return view('page.u_jadwal', ['dosen' => $dosen, 'kelas' => $kelas, 'jadwal' => $jadwal]);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Jadwal  $jadwal
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request)
-    {
-        Jadwal::where('_id',$request->id_jadwal)->update([
-            'nama_dosen' => ucwords($request->nama_dosen),
-            'nama_kelas' => ucWords($request->nama_kelas),
-            'jadwal' => $request->jadwal_kelas,
-            'matkul' => ucWords($request->matkul_kelas),
-        ]);
-        return redirect(route('jadwal'))->with('success', 'Data Jadwal Berhasil Diubah');
     }
 
     /**

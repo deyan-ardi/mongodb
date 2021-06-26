@@ -1,7 +1,36 @@
 @extends('layouts.app')
 
 @section('title', 'Tambah Data Jadwa;')
-
+@section('footer')
+    <script>
+        // Get Data Dosen
+        firebase.database().ref('Dosen/').on('value', function(snapshot) {
+            var value = snapshot.val();
+            var htmls = ['<option value="">-- Pilih Dosen --</option>'];
+            $.each(value, function(index, value) {
+                if (value) {
+                    htmls.push('<option value="' + value.nama_dosen + '">' + value.nama_dosen +
+                    '</option>');
+                }
+                lastIndex = index;
+            });
+            $('#nama_dosen').html(htmls);
+        });
+        // Get Data Kelas
+        firebase.database().ref('Kelas/').on('value', function(snapshot) {
+            var value = snapshot.val();
+            var htmls = ['<option value="">-- Pilih Kelas --</option>'];
+            $.each(value, function(index, value) {
+                if (value) {
+                    htmls.push('<option value="' + value.nama_kelas + '">' + value.nama_kelas +
+                    '</option>');
+                }
+                lastIndex = index;
+            });
+            $('#nama_kelas').html(htmls);
+        });
+    </script>
+@endsection
 @section('main')
     <div class="col-6">
         <div class="card text-dark bg-light mb-3">
@@ -12,19 +41,13 @@
                     <div class="mb-3">
                         <label for="nama" class="form-label">Nama Dosen</label>
                         <select name="nama_dosen" id="nama_dosen" class="form-control">
-                            <option value="">-- Pilih Dosen --</option>
-                            @foreach ($dosen as $d)
-                                <option value="{{ $d->nama_dosen }}">{{ $d->nama_dosen }}</option>
-                            @endforeach
+
                         </select>
                     </div>
                     <div class="mb-3">
                         <label for="nama" class="form-label">Nama Kelas</label>
-                        <select name="nama_kelas" id="nama_dosen" class="form-control">
-                            <option value="">-- Pilih Kelas --</option>
-                            @foreach ($kelas as $k)
-                                <option value="{{ $k->nama_kelas }}">{{ $k->nama_kelas }}</option>
-                            @endforeach
+                        <select name="nama_kelas" id="nama_kelas" class="form-control">
+                            
                         </select>
                     </div>
                     <div class="mb-3">

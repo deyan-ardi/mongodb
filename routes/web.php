@@ -16,20 +16,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'HomeController@index');
 Route::prefix('dosen')->group(function () {
     Route::get('/', 'DosenController@index')->name('dosen');
-    Route::get('/tambah-dosen', 'DosenController@create')->name('tambah-dosen');
-    Route::post('/proses-tambah-dosen', 'DosenController@store')->name('proses-tambah-dosen');
-    Route::post('/show-dosen/{dosen}', 'DosenController@edit')->name('show-dosen');
-    Route::patch('/proses-edit-dosen', 'DosenController@update')->name('proses-edit-dosen');
-    Route::delete('/hapus-dosen/{dosen}', 'DosenController@destroy')->name('hapus-dosen');
+   
 });
 
 Route::prefix('kelas')->group(function () {
     Route::get('/', 'KelasController@index')->name('kelas');
-    Route::get('/tambah-kelas', 'KelasController@create')->name('tambah-kelas');
-    Route::post('/show-kelas/{kelas}', 'KelasController@edit')->name('show-kelas');
-    Route::post('/proses-tambah-kelas', 'KelasController@store')->name('proses-tambah-kelas');
-    Route::patch('/proses-edit-kelas', 'KelasController@update')->name('proses-edit-kelas');
-    Route::delete('/hapus-kelas/{kelas}', 'KelasController@destroy')->name('hapus-kelas');
+   
 });
 
 Route::prefix('jadwal')->group(function () {
